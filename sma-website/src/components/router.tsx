@@ -3,6 +3,7 @@ import {StaffsScreen} from "../screens/staffs.screen.tsx";
 import {Navbar} from "./navbar.tsx";
 import {StudentsScreen} from "../screens/students.screen.tsx";
 import {CoursesScreen} from "../screens/courses.screen.tsx";
+import {AddStaffScreen} from "../screens/add-staff.screen.tsx";
 
 export const router = createHashRouter([
     {
@@ -16,7 +17,17 @@ export const router = createHashRouter([
         children: [
             {
                 path: "/staffs",
-                element: <StaffsScreen/>,
+                element: <Outlet />,
+                children: [
+                    {
+                        path: "",
+                        element: <StaffsScreen/>,
+                    },
+                    {
+                        path: "add",
+                        element: <AddStaffScreen/>,
+                    },
+                ]
             },
             {
                 path: "/students",
