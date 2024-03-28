@@ -1,5 +1,5 @@
 import {PropsWithChildren, useMemo} from "react";
-import {CourseApi, StaffApi, StudentApi} from "@rtb";
+import {CourseApi, StaffApi, StudentApi} from "@rtb/index.ts";
 import {apiContext} from "./context.tsx";
 
 const DEFAULT_BASE_PATH = 'http://localhost:8080';

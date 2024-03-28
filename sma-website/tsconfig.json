@@ -21,8 +21,9 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@rtb/*": ["src/gen/rtb/*"],
-      "@rtb": ["src/gen/rtb"],
-    }
+      "@rtb": ["src/gen/rtb"]
+    },
+    "baseUrl": "."
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }],
