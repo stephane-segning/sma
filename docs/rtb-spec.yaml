@@ -1,0 +1,417 @@
+openapi: 3.0.3
+info:
+  title: School Management App
+  description: A Specification for the REST API communication to the Spring boot app and from the React application.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:{port}'
+    variables:
+      port:
+        default: "8080"
+tags:
+  - name: student
+    description: All about students
+  - name: staff
+    description: All about staff
+  - name: course
+    description: All about courses
+
+paths:
+  '/students':
+    get:
+      summary: Get all students
+      operationId: getStudents
+      tags: [ student ]
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        200:
+          description: Found all students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+    post:
+      summary: Create a student
+      operationId: createStudent
+      tags: [ student ]
+      parameters: [ ]
+      requestBody:
+        description: The student to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStudent'
+      responses:
+        200:
+          description: Created a student
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+  '/students/{student_id}':
+    get:
+      summary: Get a single student
+      operationId: getOneStudent
+      tags: [ student ]
+      parameters:
+        - name: student_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of a student
+      responses:
+        200:
+          description: Found a student
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+    delete:
+      summary: Delete a single student
+      operationId: deleteOneStudent
+      tags: [ student ]
+      parameters:
+        - name: student_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of a student
+      responses:
+        200:
+          description: Deleted a student
+    put:
+      summary: Update a student
+      operationId: updateStudent
+      tags: [ student ]
+      parameters:
+        - name: student_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of a student
+      requestBody:
+        description: The student to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStudent'
+      responses:
+        200:
+          description: Updated a students
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+  '/courses':
+    get:
+      summary: Get all courses
+      operationId: getCourses
+      tags: [ course ]
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        200:
+          description: Found all course
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course'
+    post:
+      summary: Create a course
+      operationId: createCourse
+      tags: [ course ]
+      parameters: [ ]
+      requestBody:
+        description: The staff to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCourse'
+      responses:
+        200:
+          description: Created a course
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+  '/courses/{course_id}':
+    get:
+      summary: Get a single course
+      operationId: getOneCourse
+      tags: [ course ]
+      parameters:
+        - name: course_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of a course
+      responses:
+        200:
+          description: Found a course
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+    delete:
+      summary: Delete a single course
+      operationId: deleteOneCourse
+      tags: [ course ]
+      parameters:
+        - name: course_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of a course
+      responses:
+        200:
+          description: Deleted a course
+    put:
+      summary: Update a course
+      operationId: updateCourse
+      tags: [ course ]
+      parameters:
+        - name: course_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of a course
+      requestBody:
+        description: The course to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCourse'
+      responses:
+        200:
+          description: Updated a courses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+  '/staffs':
+    get:
+      summary: Get all staffs
+      operationId: getStaffs
+      tags: [ staff ]
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        200:
+          description: Found all staffs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Staff'
+    post:
+      summary: Create a staff
+      operationId: createStaff
+      tags: [ staff ]
+      parameters: [ ]
+      requestBody:
+        description: The staff to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStaff'
+      responses:
+        200:
+          description: Created a staff
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Staff'
+  '/staffs/{staff_id}':
+    get:
+      summary: Get a single staff
+      operationId: getOneStaff
+      tags: [ staff ]
+      parameters:
+        - name: staff_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of a staff
+      responses:
+        200:
+          description: Found a staff
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Staff'
+    delete:
+      summary: Delete a single staff
+      operationId: deleteOneStaff
+      tags: [ staff ]
+      parameters:
+        - name: staff_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of a staff
+      responses:
+        200:
+          description: Deleted a staff
+    put:
+      summary: Update a staff
+      operationId: updateStaff
+      tags: [ staff ]
+      parameters:
+        - name: staff_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of a staff
+      requestBody:
+        description: The staff to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStaff'
+      responses:
+        200:
+          description: Updated a staff
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Staff'
+
+components:
+  schemas:
+    StaffFunction:
+      type: string
+      enum:
+        - teacher
+        - director
+        - cook
+        - cleaner
+        - gate_keeper
+    CreateStudent:
+      type: object
+      properties:
+        name:
+          type: string
+    UpdateStudent:
+      type: object
+      properties:
+        name:
+          type: string
+    Student:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    CreateCourse:
+      type: object
+      properties:
+        name:
+          type: string
+        participants:
+          type: array
+          items:
+            type: string
+        teachers:
+          type: array
+          items:
+            type: string
+    UpdateCourse:
+      type: object
+      properties:
+        name:
+          type: string
+        participants:
+          type: array
+          items:
+            type: string
+        teachers:
+          type: array
+          items:
+            type: string
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Student'
+        teachers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Staff'
+    CreateStaff:
+      type: object
+      properties:
+        name:
+          type: string
+        functions:
+          type: array
+          items:
+            $ref: '#/components/schemas/StaffFunction'
+    UpdateStaff:
+      type: object
+      properties:
+        name:
+          type: string
+        functions:
+          type: array
+          items:
+            $ref: '#/components/schemas/StaffFunction'
+    Staff:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        functions:
+          type: array
+          items:
+            $ref: '#/components/schemas/StaffFunction'
