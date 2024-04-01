@@ -11,10 +11,12 @@
     "gen-rtb": "openapi-generator-cli generate -i ../docs/rtb-spec.yaml -g typescript-axios -o src/gen/rtb --additional-properties packageName=rtb"
   },
   "dependencies": {
+    "formik": "^2.4.5",
     "localforage": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.13.1",
